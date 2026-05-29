@@ -1,8 +1,16 @@
 import streamlit as st
 import requests
+import os
 
-URL_API = "http://127.0.0.1:5000"
+load_dotenv() 
 
+ALLOWED_EMAIL = os.getenv('ALLOWED_EMAIL')
+minha_senha = os.getenv('ALLOWED_PASSWORD')
+chave_jwt = os.getenv('JWT_SECRET_KEY')
+URL_API = os.getenv('URL_API')
+
+URL_API_1 = URL_API
+ALLOWED_EMAIL = os.getenv('ALLOWED_EMAIL')
 st.set_page_config(page_title="Login", page_icon="🔒", layout="centered")
 
 # --- MÁGICA DO CSS: Centraliza tudo e esconde a sidebar ---
@@ -41,7 +49,7 @@ st.title("🔒 Acesso Restrito")
 st.write("Identifique-se para entrar no sistema.")
 
 if st.button("🚀 Entrar (Simular Google)", use_container_width=True):
-    dados_simulados = {"email": "luis.oliveiraprimo288@gmail.com", "senha": "sua_senha_secreta"}
+    dados_simulados = {"email": ALLOWED_EMAIL, "senha": ALLOWED_PASSWORD}
     try:
         resposta = requests.post(f"{URL_API}/login", json=dados_simulados)
         if resposta.status_code == 200:
