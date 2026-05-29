@@ -15,7 +15,7 @@ URL_API = os.getenv('URL_API')
 print(f"O email liberado para acesso é: {ALLOWED_EMAIL}")
 
 # URL do seu servidor Flask
-URL_API_1 = URL_API
+URL_API_1= "http://127.URL_API.0.1:5000"
 
 # 1. Memória do Streamlit
 if 'meu_jwt' not in st.session_state:
@@ -32,7 +32,7 @@ def mostrar_tela_login():
         # SIMULAÇÃO: Na vida real, clicar no botão abriria a tela do Google. 
         # Como estamos simulando, mandamos os dados diretamente por baixo dos panos.
         # Altere esta linha dentro do arquivo frontend.py:
-        dados_simulados = {{ALLOWED_EMAIL}: "luis.oliveiraprimo288@gmail.com", {minha_senha}: "sua_senha_secreta"}
+        dados_simulados = {"email": ALLOWED_EMAIL, "senha":ALLOWED_PASSWORD}
         
         try:
             resposta = requests.post(f"{URL_API_1}/login", json=dados_simulados)

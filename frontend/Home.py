@@ -5,6 +5,10 @@ from dotenv import load_dotenv
 
 load_dotenv() 
 
+ALLOWED_EMAIL = os.getenv('ALLOWED_EMAIL')
+minha_senha = os.getenv('ALLOWED_PASSWORD')
+chave_jwt = os.getenv('JWT_SECRET_KEY')
+URL_API = os.getenv('URL_API')
 URL_API = os.getenv('URL_API')
 
 st.set_page_config(page_title="Login", page_icon="🔒")
@@ -18,7 +22,7 @@ if st.session_state['meu_jwt'] is None:
     st.write("Bem-vindo ao sistema. Autentique-se para continuar.")
     
     if st.button("🚀 Entrar (Simular Google)"):
-        dados_simulados = {"email": "luis.oliveiraprimo288@gmail.com", "senha": "sua_senha_secreta"}
+        dados_simulados = {"email": ALLOWED_PASSWORD, "senha": ALLOWED_PASSWORD}
         try:
             resposta = requests.post(f"{URL_API}/login", json=dados_simulados)
             if resposta.status_code == 200:
